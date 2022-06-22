@@ -128,7 +128,14 @@
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="pesan"></textarea>
                           </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary my-butonk">Submit</button>
+                        <button class="btn btn-primary my-load" type="button" disabled>
+                          <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                           Loading...
+                        </button>
+                        <div class="alert alert-primary d-none my-alert" role="alert">
+                          Pesan telah terkirim
+                        </div>
                       </form>
                 </div>
             </div>
@@ -150,11 +157,22 @@
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbwgVmTDvftbkl3YxxcnhUGQokfx7w_QO9XsfhlUXF2D6K4fR4X838ildTQ908BntHWm/exec'
       const form = document.forms['fajarunudin']
+      const kirim = document.querySelector('my-butonk')
+      const loading = document.querySelector('my-load')
+      const alert = document.querySelector('my-alert')
 
       form.addEventListener('submit', e => {
         e.preventDefault()
+        loading.classList.toggle("d-none")
+        kirim.classList.toggle("d-none")
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-          .then(response => console.log('Success!', response))
+          .then(response => {
+            loading.classList.toggle("d-none")
+            kirim.classList.toggle("d-none")
+            alert.classList.toggle("d-none")
+            form.reset()
+            console.log('Success!', response)
+          })
           .catch(error => console.error('Error!', error.message))
       })
     </script>
