@@ -155,23 +155,23 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbwgVmTDvftbkl3YxxcnhUGQokfx7w_QO9XsfhlUXF2D6K4fR4X838ildTQ908BntHWm/exec'
-      const form = document.forms['fajarunudin']
-      const kirim = document.querySelector('my-butonk')
-      const loading = document.querySelector('my-load')
-      const alert = document.querySelector('my-alert')
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwgVmTDvftbkl3YxxcnhUGQokfx7w_QO9XsfhlUXF2D6K4fR4X838ildTQ908BntHWm/exec';
+      const form = document.forms['fajarunudin'];
+      const kirim = document.querySelector('my-butonk');
+      const loading = document.querySelector('my-load');
+      const alert = document.querySelector('my-alert');
 
       form.addEventListener('submit', e => {
-        e.preventDefault()
-        loading.classList.toggle("d-none")
-        kirim.classList.toggle("d-none")
+        e.preventDefault();
+        loading.classList.toggle("d-none");
+        kirim.classList.toggle("d-none");
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => {
-            loading.classList.toggle("d-none")
-            kirim.classList.toggle("d-none")
-            alert.classList.toggle("d-none")
-            form.reset()
-            console.log('Success!', response)
+            loading.classList.toggle("d-none");
+            kirim.classList.toggle("d-none");
+            alert.classList.toggle("d-none");
+            form.reset();
+            console.log('Success!', response);
           })
           .catch(error => console.error('Error!', error.message))
       })
